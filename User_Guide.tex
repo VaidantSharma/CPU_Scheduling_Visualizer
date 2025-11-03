@@ -1,0 +1,228 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+
+% Page styling
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{Round Robin Scheduler - User Guide}}
+\fancyhead[L]{\textbf{CPU Scheduler Visualizer - User Guide}}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{BCSE303L - Operating System}
+
+% Colors for code highlighting
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=none,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+% Title formatting
+\titleformat{\section}{\large\bfseries\color{blue!70!black}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{blue!60!black}}{\thesubsection}{1em}{}
+
+% Hyperlink styling
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+\title{
+    \textbf{\Large Round Robin CPU Scheduler\\User Guide}\\[0.3cm]
+    \textbf{\Large CPU Scheduling Algorithms Visualizer\\User Guide}\\[0.3cm]
+    \normalsize Operating System - DA Case Study - I
+}
+\author{
+    \textbf{Student Details:}\\
+    Name: Vaidant Sharma\\
+    Roll No: 23BKT0016\\
+    Course: Operating System\\
+    DA Case Study - I\\
+    Course Code: BCSE303L\\
+    Class Number: VL2025260101320\\[0.5cm]
+    \textbf{Links:}\\
+    GitHub: \href{https://github.com/VaidantSharma/RoundRobin_Visualizer}{https://github.com/VaidantSharma/RoundRobin\_Visualizer}\\
+    Live Demo: \href{https://roundrobinvisualizer-woad.vercel.app/}{https://roundrobinvisualizer-woad.vercel.app/}
+    GitHub: \href{https://github.com/VaidantSharma/CPU-Scheduling-Visualizer}{https://github.com/VaidantSharma/CPU-Scheduling-Visualizer}\\
+    Live Demo: \href{https://cpu-scheduling-visualizer.vercel.app/}{https://cpu-scheduling-visualizer.vercel.app/}
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+\section{Setup Instructions}
+
+\subsection{Prerequisites}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+    \item \textbf{Node.js}: Version 18.0.0 or higher
+    \item \textbf{npm}: Version 9.0.0 or higher
+    \item \textbf{Modern Web Browser}: Chrome 120+, Firefox 121+, Edge 120+, or Safari 17.0+
+\end{itemize}
+
+\subsection{Installation}
+\begin{enumerate}[leftmargin=*,itemsep=0pt]
+    \item Clone the repository: \texttt{git clone https://github.com/VaidantSharma/RoundRobin\_Visualizer.git}
+    \item Navigate to project directory: \texttt{cd RoundRobin\_Visualizer}
+    \item Clone the repository: \texttt{git clone https://github.com/VaidantSharma/CPU-Scheduling-Visualizer.git}
+    \item Navigate to project directory: \texttt{cd CPU-Scheduling-Visualizer}
+    \item Install dependencies: \texttt{npm install}
+    \item Start development server: \texttt{npm run dev}
+    \item Open browser: \texttt{http://localhost:3000}
+\end{enumerate}
+
+\textbf{Alternative:} Access the live demo at \href{https://roundrobinvisualizer-woad.vercel.app/}{roundrobinvisualizer-woad.vercel.app} without installation.
+\textbf{Alternative:} Access the live demo at \href{https://cpu-scheduling-visualizer.vercel.app/}{cpu-scheduling-visualizer.vercel.app} without installation.
+
+\section{User Interface Guide}
+
+\subsection{Algorithm Selection}
+Choose the desired scheduling algorithm from the selection panel at the top. The simulation will reset when a new algorithm is chosen.
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+    \item FCFS (First-Come, First-Served)
+    \item SJF (Shortest Job First)
+    \item Round Robin
+    \item Priority
+    \item Multilevel Queue (MLQ)
+\end{itemize}
+
+\subsection{Process Configuration}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+    \item \textbf{Add Process}: Click "Add Process" to create new processes (default: burst=5, arrival=0)
+    \item \textbf{Burst Time}: Total CPU time required (minimum: 1)
+    \item \textbf{Arrival Time}: Time unit when process arrives (minimum: 0)
+    \item \textbf{Remove}: Click trash icon to delete a process
+    \item \textbf{Time Quantum}: Maximum CPU time per process before preemption (default: 4)
+    \item \textbf{Priority/Queue}: Additional fields available for Priority and MLQ algorithms.
+    \item \textbf{Speed}: Animation speed slider (1x to 100x)
+\end{itemize}
+
+\subsection{Controls}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+    \item \textbf{Start/Pause}: Toggle simulation execution
+    \item \textbf{Reset}: Restore initial state and clear all data
+    \item \textbf{Real-time Info}: Displays current time, context switches, executing process, quantum left, and remaining time
+\end{itemize}
+
+\subsection{Visualization Areas}
+\begin{enumerate}[leftmargin=*,itemsep=0pt]
+    \item \textbf{Process Configuration Panel}: Add/configure processes and system parameters
+    \item \textbf{Algorithm Selection Panel}: Choose the scheduling algorithm.
+    \item \textbf{Process Configuration Panel}: Add/configure processes and system parameters.
+    \item \textbf{Control Panel}: Simulation controls and real-time statistics
+    \item \textbf{Process Flow Animation}: Visual representation of process lifecycle
+    \item \textbf{Gantt Chart}: Timeline view of process execution sequence
+    \item \textbf{Performance Metrics}: Detailed statistics table with averages
+\end{enumerate}
+
+\section{Animation Features}
+
+\subsection{Color Coding}
+Each process has a unique color: Blue (P1), Green (P2), Orange (P3), Red (P4), Purple (P5), Pink (P6), Cyan (P7), Lime (P8). Colors are consistent across all visualizations.
+
+\subsection{Visualization Flow}
+The application uses a top-to-bottom flow:
+\begin{enumerate}[leftmargin=*,itemsep=0pt]
+    \item \textbf{New Arrival} (Purple theme): Processes appear at their arrival time
+    \item \textbf{Ready Queue} (Blue theme): FIFO queue of processes waiting for CPU
+    \item \textbf{CPU Execution} (Yellow theme): Currently executing process with pulsing animation
+    \item \textbf{Completed} (Green theme): Finished processes with checkmark symbol
+    \item \textbf{Return to Queue} (Orange): Preempted processes returning to ready queue
+\end{enumerate}
+
+\subsection{Animation Transitions}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+    \item \textbf{Slide In Top}: New processes arriving (purple border)
+    \item \textbf{Move Down Row}: Moving to queue/CPU/completed sections
+    \item \textbf{Pulse}: Continuous animation for executing process
+    \item \textbf{Move Up To Queue}: Preempted process returning to queue (orange border)
+\end{itemize}
+
+\subsection{Performance Metrics}
+The application calculates:
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+    \item \textbf{Turnaround Time} = Completion Time - Arrival Time
+    \item \textbf{Waiting Time} = Turnaround Time - Burst Time
+    \item \textbf{Average Turnaround Time} and \textbf{Average Waiting Time}
+    \item \textbf{Total Context Switches}
+\end{itemize}
+
+Metrics are displayed in a table with per-process details and aggregate summary cards.
+
+\section{Browser Requirements}
+
+\subsection{Supported Browsers}
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Browser} & \textbf{Minimum Version} \\
+\midrule
+Google Chrome & 120+ \\
+Mozilla Firefox & 121+ \\
+Microsoft Edge & 120+ \\
+Safari (macOS/iOS) & 17.0+ \\
+Opera & 106+ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Required Features}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+    \item JavaScript enabled
+    \item CSS Grid, Flexbox, and Animations support
+    \item ES6+ JavaScript features
+    \item React 19 compatibility
+\end{itemize}
+
+\subsection{Compatibility Notes}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+    \item Internet Explorer is \textbf{not supported}
+    \item Mobile browsers supported on modern devices
+    \item Responsive design supports screens from 320px width
+    \item Update browser if experiencing issues
+\end{itemize}
+
+\vspace{0.3cm}
+\begin{center}
+\textit{For more information, visit: \href{https://github.com/VaidantSharma/RoundRobin_Visualizer}{GitHub Repository}}
+\textit{For more information, visit: \href{https://github.com/VaidantSharma/CPU-Scheduling-Visualizer}{GitHub Repository}}
+\end{center}
+
+\end{document}
