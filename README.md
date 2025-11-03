@@ -2,7 +2,7 @@
 
 An interactive web application for visualizing the Round Robin CPU scheduling algorithm with real-time animations, comprehensive metrics, and an intuitive user interface.
 
-##Live Demo - https://cpu-scheduling-visualizer-livid.vercel.app/
+Live Demo - https://cpu-scheduling-visualizer-livid.vercel.app/
 
 ## Table of Contents
 
